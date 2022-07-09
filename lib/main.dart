@@ -36,8 +36,14 @@ class _MyAppState extends State<MyApp> {
     }
 
     var _questions = [
-      "Whats  your favorite color?",
-      "Whats  your favorite fruit?"
+      {
+        "questionText": "Whats  your favorite color?",
+        "answer": ["Black", "Red", "Green", "White"],
+      },
+      {
+        "questionText": "Whats  your favorite Animal?",
+        "answer": ["Snake", "Lion", "Tiger", "Wolf"],
+      }
     ];
 
     return MaterialApp(
@@ -50,10 +56,24 @@ class _MyAppState extends State<MyApp> {
             Question(
               _questions[_questionIndex],
             ),
-            Answer(),
-            Answer(),
-            Answer(),
-            Answer(),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+            Answer(_answerQuestion),
+
+            //     RaisedButton(
+            //   child: Text('Daftar Misa'),
+            //   onPressed: _answerQuestion,
+            // ),
+            // RaisedButton(
+            //   child: Text('Daftar Baptis'),
+            //   // onPressed: () => print('Choosen'),
+            //   onPressed: _answerQuestion,
+            // ),
+            // RaisedButton(
+            //   child: Text('Daftar Komuni'),
+            //   onPressed: _answerQuestion,
+            // ),
           ],
         ),
       ),
