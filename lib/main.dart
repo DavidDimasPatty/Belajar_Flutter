@@ -35,14 +35,18 @@ class _MyAppState extends State<MyApp> {
       print('Button Pressed');
     }
 
-    var _questions = [
+    var questions = [
       {
-        "questionText": "Whats  your favorite color?",
-        "answer": ["Black", "Red", "Green", "White"],
+        'questionText': 'Whats  your favorite color?',
+        'answer': ['Black', 'Red', 'Green', 'White'],
       },
       {
-        "questionText": "Whats  your favorite Animal?",
-        "answer": ["Snake", "Lion", "Tiger", "Wolf"],
+        'questionText': 'Whats  your favorite Animal?',
+        'answer': ['Snake', 'Lion', 'Tiger', 'Wolf'],
+      },
+      {
+        'questionText': 'Whats  your favorite Fruit?',
+        'answer': ['Orange', 'Manggo', 'Durian', 'Apple'],
       }
     ];
 
@@ -54,7 +58,7 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: [
             Question(
-              _questions[_questionIndex],
+              questions[_questionIndex]['questionText'] as String,
             ),
             Answer(_answerQuestion),
             Answer(_answerQuestion),
