@@ -21,11 +21,30 @@ class MyApp extends StatefulWidget {
 //////////////////////////////////////////////
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-
+  static const questions = [
+    {
+      'questionText': 'Whats  your favorite color?',
+      'answer': ['Black', 'Red', 'Green', 'White'],
+    },
+    {
+      'questionText': 'Whats  your favorite Animal?',
+      'answer': ['Snake', 'Lion', 'Tiger', 'Wolf'],
+    },
+    {
+      'questionText': 'Whats  your favorite Fruit?',
+      'answer': ['Orange', 'Manggo', 'Durian', 'Apple'],
+    }
+  ];
   void _answerQuestion() {
     setState(() {
+      // if (_questionIndex >= questions.length - 1) {
+      //   _questionIndex = 0;
+      // } else {
+      //   _questionIndex = _questionIndex + 1;
+      // }
       _questionIndex = _questionIndex + 1;
     });
+
     print(_questionIndex);
   }
 
@@ -35,51 +54,44 @@ class _MyAppState extends State<MyApp> {
       print('Button Pressed');
     }
 
-    var questions = [
-      {
-        'questionText': 'Whats  your favorite color?',
-        'answer': ['Black', 'Red', 'Green', 'White'],
-      },
-      {
-        'questionText': 'Whats  your favorite Animal?',
-        'answer': ['Snake', 'Lion', 'Tiger', 'Wolf'],
-      },
-      {
-        'questionText': 'Whats  your favorite Fruit?',
-        'answer': ['Orange', 'Manggo', 'Durian', 'Apple'],
-      }
-    ];
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Aplikasi Gereja'),
         ),
-        body: Column(
-          children: [
-            Question(
-              questions[_questionIndex]['questionText'] as String,
-            ),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+        body: _questionIndex < questions.length
+            ? Column(
+                children: [
+                  Question(
+                    questions[_questionIndex]['questionText'] as String,
+                  ),
+                  ...(questions[_questionIndex]['answer'] as List<String>)
+                      .map((answers) {
+                    return Answer(_answerQuestion, answers);
+                  }).toList()
+                  // Answer(_answerQuestion),
+                  // Answer(_answerQuestion),
+                  // Answer(_answerQuestion),
+                  // Answer(_answerQuestion),
 
-            //     RaisedButton(
-            //   child: Text('Daftar Misa'),
-            //   onPressed: _answerQuestion,
-            // ),
-            // RaisedButton(
-            //   child: Text('Daftar Baptis'),
-            //   // onPressed: () => print('Choosen'),
-            //   onPressed: _answerQuestion,
-            // ),
-            // RaisedButton(
-            //   child: Text('Daftar Komuni'),
-            //   onPressed: _answerQuestion,
-            // ),
-          ],
-        ),
+                  //     RaisedButton(
+                  //   child: Text('Daftar Misa'),
+                  //   onPressed: _answerQuestion,
+                  // ),
+                  // RaisedButton(
+                  //   child: Text('Daftar Baptis'),
+                  //   // onPressed: () => print('Choosen'),
+                  //   onPressed: _answerQuestion,
+                  // ),
+                  // RaisedButton(
+                  //   child: Text('Daftar Komuni'),
+                  //   onPressed: _answerQuestion,
+                  // ),
+                ],
+              )
+            : Center(
+                child: Text("You Did It!"),
+              ),
       ),
     );
   }
